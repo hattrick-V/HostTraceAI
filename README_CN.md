@@ -1,5 +1,7 @@
 # HostTraceAI
 
+[English](README.md) | **简体中文**
+
 HostTraceAI 是面向授权运维与安全响应的 AI 主机溯源平台。
 
 它复用成熟的对话式 Agent、MCP 能力中心、Skill 加载、权限管理、系统设置、审计和 SQLite 持久化框架，但业务模型只围绕主机溯源展开：

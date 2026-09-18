@@ -1,5 +1,7 @@
 # HostTraceAI
 
+**English** | [简体中文](README_CN.md)
+
 HostTraceAI is an AI-assisted host provenance and incident-response workspace. It is built on a mature conversational agent, MCP, Skills, RBAC, audit, and SQLite foundation, while keeping host investigation as its only product domain.
 
 The platform helps authorized responders investigate Linux and Windows hosts over SSH/MCP, preserve evidence, reason over findings, and produce an auditable timeline and report.
