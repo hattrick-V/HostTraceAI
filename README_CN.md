@@ -15,6 +15,20 @@ HostTraceAI 是面向授权运维与安全响应的 AI 主机溯源平台。
 
 HostTraceAI 不承担告警中心、漏洞扫描、资产测绘、渗透测试或 C2 平台职责。主机列表只用于溯源目标管理，发现项只表示主机调查证据，不等同于漏洞。
 
+## 界面截图
+
+**登录**
+
+![HostTraceAI 登录](images/screenshot-login.png)
+
+**病毒木马溯源 — 发现项、外联与样本哈希**
+
+![病毒木马溯源](images/screenshot-malware-triage.png)
+
+**审批处置 — 每个动作都记录回滚方式**
+
+![审批处置](images/screenshot-approval-execution.png)
+
 ## 技术基础
 
 - Go + Eino Agent 编排

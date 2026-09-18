@@ -6,6 +6,20 @@ The platform helps authorized responders investigate Linux and Windows hosts ove
 
 It is not a vulnerability scanner, penetration-testing console, asset-discovery platform, alert center, or C2 framework.
 
+## Screenshots
+
+**Sign-in**
+
+![HostTraceAI sign-in](images/screenshot-login.png)
+
+**Malware triage — findings, external connections and sample hashes**
+
+![Malware triage](images/screenshot-malware-triage.png)
+
+**Approval-gated containment — every action recorded with a rollback path**
+
+![Approval-gated containment](images/screenshot-approval-execution.png)
+
 ## Quick start
 
 Requires Go 1.25 or newer (see the `go` directive in `go.mod`).
