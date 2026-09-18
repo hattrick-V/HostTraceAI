@@ -1,0 +1,61 @@
+HostTraceAI
+Copyright 2026 hattrick-V
+
+--------------------------------------------------------------------------
+Attribution / 来源说明
+--------------------------------------------------------------------------
+
+HostTraceAI is derived from CyberStrikeAI.
+
+    CyberStrikeAI
+    Copyright 2025 Ed1s0nZ
+    https://github.com/AIPentest/CyberStrikeAI
+    Licensed under the Apache License, Version 2.0
+
+HostTraceAI reuses the architectural and engineering skeleton of
+CyberStrikeAI — including the Go server layout, the MCP capability centre,
+the Markdown Skill loading mechanism, the RBAC / approval / audit layer, and
+the web console structure — while narrowing the product scope to host
+provenance and incident response.
+
+HostTraceAI 的架构与工程骨架衍生自 CyberStrikeAI（Copyright 2025 Ed1s0nZ，
+Apache License 2.0）。复用的部分包括 Go 服务端结构、MCP 能力中心、
+Markdown Skill 加载机制、RBAC / 审批 / 审计层，以及 Web 控制台的整体结构。
+
+--------------------------------------------------------------------------
+Significant changes / 主要改动
+--------------------------------------------------------------------------
+
+1. Rebranding: product name, identifiers, UI strings, logos, and assets
+   changed from CyberStrikeAI to HostTraceAI.
+2. Product scope narrowed: the platform now serves host provenance and
+   incident response only, and explicitly excludes vulnerability scanning,
+   penetration testing, asset discovery, alerting, and C2 functionality.
+3. Built-in tool set reduced to reviewed, read-only or approval-gated host
+   forensic tools (`binwalk`, `exiftool`, `foremost`, `strings`, `exec`).
+   Non-forensic tooling was removed.
+4. Investigation role set redesigned (`roles/`): trace commander, malware
+   triage, and WebShell triage.
+5. Host-forensics Skill library added and reorganised (`skills/`).
+6. Governance defaults tightened: read-only collection by default, and file
+   deletion, credential attempts, lateral movement, network scanning, and
+   unreviewed script execution are disabled by default.
+
+--------------------------------------------------------------------------
+Contact / 联系方式
+--------------------------------------------------------------------------
+
+We have made a good-faith effort to credit the original work and to comply
+with the Apache License, Version 2.0.
+
+If the original author or any rights holder considers this project's use
+inappropriate or infringing, please contact:
+
+    dengpan084@gmail.com
+
+We will verify and promptly take the project down or make the requested
+corrections.
+
+我们已尽善意努力标注原始出处并遵守 Apache License 2.0。若原作者或任何权利方
+认为本项目的使用方式不当或构成侵权，请通过上述邮箱联系，我们将在核实后立即
+下架或按要求调整。

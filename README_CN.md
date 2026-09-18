@@ -94,3 +94,13 @@ HOSTTRACE_PORT=19088 ./hosttrace-ai --http
 采集类动作默认只读；终止进程、禁用服务、隔离主机、阻断 C2 等动作需要策略允许或人工审批；删除文件、密码尝试、横向连接、网段扫描和未知脚本默认禁止。
 
 本项目仅用于获得明确授权的主机调查与事件响应。
+
+## 来源说明与声明
+
+HostTraceAI 的架构与工程骨架衍生自
+[CyberStrikeAI](https://github.com/AIPentest/CyberStrikeAI)（Copyright 2025
+Ed1s0nZ），该项目采用 Apache License 2.0 许可。本项目沿用同一许可，保留原始版权声明，并在 [`NOTICE`](NOTICE) 中说明具体改动。
+
+复用的骨架包括 Go 服务端结构、MCP 能力中心、Markdown Skill 加载机制、RBAC / 审批 / 审计层，以及 Web 控制台的整体结构。在此基础上，HostTraceAI 将产品范围收窄至主机溯源与事件响应，重塑品牌，把内置工具收敛为经审核的主机取证工具，并重新设计了溯源角色体系与 Skill 库。
+
+我们已尽善意努力标注原始出处。若原作者或任何权利方认为本项目的使用方式不当或构成侵权，请联系 **dengpan084@gmail.com**，我们将在核实后立即下架该项目或按要求调整。

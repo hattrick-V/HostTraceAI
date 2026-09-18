@@ -83,3 +83,23 @@ See `README_CN.md` for the product model and the local deployment guide.
 
 An optional Chromium DevTools extension (capture browser Network traffic into an investigation) lives in `plugins/browser-extension/`; see `plugins/README.md`.
 
+## Attribution and notice
+
+HostTraceAI's architectural and engineering skeleton is derived from
+[CyberStrikeAI](https://github.com/AIPentest/CyberStrikeAI) (Copyright 2025
+Ed1s0nZ), which is licensed under the Apache License 2.0. HostTraceAI keeps the
+same license, retains the original copyright notice, and documents its changes
+in [`NOTICE`](NOTICE).
+
+The reused skeleton covers the Go server layout, the MCP capability centre, the
+Markdown Skill loading mechanism, the RBAC / approval / audit layer, and the
+web console structure. HostTraceAI then narrows the product scope to host
+provenance and incident response, rebrands the product, reduces the built-in
+tool set to reviewed host forensic tools, and redesigns the investigation roles
+and the Skill library.
+
+We have made a good-faith effort to credit the original work. If the original
+author or any rights holder considers this project's use inappropriate or
+infringing, please contact **dengpan084@gmail.com**. We will verify and
+promptly take the project down or make the requested corrections.
+
