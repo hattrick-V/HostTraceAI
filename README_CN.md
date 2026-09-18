@@ -85,31 +85,6 @@ HOSTTRACE_PORT=19088 ./hosttrace-ai --http
 
 内置取证工具位于 `tools/`（binwalk、exiftool、foremost、strings、exec），需要相应命令行程序已安装在目标主机上。
 
-## 配套工具：Windows SSH 启用工具包
-
-溯源 Windows 主机需要目标机上有一个 SSH 服务，而 Windows 通常没有。把较新的
-[PowerShell/Win32-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH)
-直接装到老服务器上，失败方式很迷惑：服务显示 `RUNNING`、端口能连、SSH 横幅也
-出得来 —— 但客户端一连就断，报 `Connection reset by <IP> port 22`。
-
-[`companion/windows-openssh-kit/`](companion/windows-openssh-kit/)
-内置三套**未经任何修改**的上游版本，挑一套在这台机器上真正能用的装上；用回环
-真实密钥交换验证是否可用，而不是只看服务状态；调查结束后一键清理干净。
-
-| 文件 | 作用 |
-|---|---|
-| `1-启用SSH.bat` | 在目标机启用 SSH（自动提权） |
-| `2-停止卸载.bat` | 停服务、卸载、还原 |
-
-该工具会启用内置 `administrator` 账号并开放一个防火墙端口，仅可用于已获明确
-授权调查的主机；`2-停止卸载.bat` 让改动完全可逆。
-
-仓库只存放脚本与文档，28 MB 的上游二进制以 Release 附件形式发布。可从
-[Releases 页面](https://github.com/hattrick-V/HostTraceAI/releases)
-下载组装好的工具包，或用 `build-kit.ps1` 自行重建。兼容性对照表、版本阶梯与
-第三方许可说明见
-[工具包 README](companion/windows-openssh-kit/README_CN.md)。
-
 ## 溯源专家
 
 第一期内置两个专家：病毒木马溯源专家、WebShell 后门溯源专家。后续专家通过 Skill 和 MCP 工具注册，不需要改动平台核心。

@@ -83,36 +83,6 @@ See `README_CN.md` for the product model and the local deployment guide.
 
 An optional Chromium DevTools extension (capture browser Network traffic into an investigation) lives in `plugins/browser-extension/`; see `plugins/README.md`.
 
-## Companion kit: Windows SSH enable kit
-
-Investigating a Windows host needs an SSH service on it, and Windows often has
-none. Installing the newest
-[PowerShell/Win32-OpenSSH](https://github.com/PowerShell/Win32-OpenSSH) build
-onto an older server fails in a confusing way: the service reports `RUNNING`,
-the port is open, the banner is served — and then every connection dies with
-`Connection reset by <IP> port 22`.
-
-[`companion/windows-openssh-kit/`](companion/windows-openssh-kit/) bundles three
-unmodified upstream releases, picks the one that actually works on the target
-machine, verifies it with a real loopback key exchange instead of trusting the
-service state, and removes everything again afterwards.
-
-| File | Purpose |
-|---|---|
-| `1-启用SSH.bat` | enable SSH on the target (self-elevating) |
-| `2-停止卸载.bat` | stop the service, uninstall, and restore |
-
-The kit enables the built-in `administrator` account and opens a firewall port.
-Use it only on hosts you are explicitly authorized to investigate —
-`2-停止卸载.bat` exists to make the change fully reversible.
-
-The repository carries the scripts and documentation; the 28 MB of upstream
-binaries ship as a release artifact. Download the assembled kit from the
-[releases page](https://github.com/hattrick-V/HostTraceAI/releases), or rebuild
-it with `build-kit.ps1`. The
-[kit README](companion/windows-openssh-kit/README.md) documents the
-compatibility matrix, the version ladder, and the third-party licensing.
-
 ## Attribution and notice
 
 HostTraceAI's architectural and engineering skeleton is derived from
