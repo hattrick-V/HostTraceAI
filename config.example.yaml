@@ -1,0 +1,50 @@
+# HostTraceAI 示例配置。复制为 config.yaml 后填写 AI 通道。
+#
+# ⚠️ ai.channels.default 是占位值：base_url 指向 api.example.com，api_key 与
+#    model 为空。服务可以启动，但在填写之前**对话不可用**。
+#    可以在这里直接改，也可以启动后在「设置 → 基础设置 → AI 通道」里填。
+version: "0.1.0"
+server:
+  host: 127.0.0.1
+  port: 9088
+  tls_enabled: false
+auth:
+  session_duration_hours: 12
+database:
+  path: data/hosttrace.db
+  knowledge_db_path: data/hosttrace-knowledge.db
+ai:
+  default_channel: default
+  channels:
+    default:
+      name: HostTraceAI 默认模型
+      provider: openai_compatible
+      # 任何 OpenAI 兼容端点均可：OpenAI / DeepSeek / 通义千问 / 智谱 /
+      # 本地 vLLM、Ollama 等。请替换为你的实际地址。
+      base_url: "https://api.example.com/v1"
+      api_key: ""   # ← 必填：你的 API Key
+      model: ""     # ← 必填：模型名，例如 deepseek-chat
+      max_total_tokens: 120000
+      max_completion_tokens: 16384
+      reasoning:
+        mode: auto
+        effort: medium
+security:
+  tools_dir: tools
+mcp:
+  enabled: false
+multi_agent:
+  enabled: true
+hitl:
+  default_mode: approval
+  default_reviewer: human
+  default_timeout_seconds: 600
+  tool_whitelist: [read_file, ls, list_dir, glob, grep, tool_search, get_tool_execution, wait_tool_execution]
+trace:
+  default_artifact_path: data/artifacts
+  allow_sample_download: false
+  allow_host_isolation: false
+
+# Built-in investigation roles. Keep this enabled so a fresh deployment has the
+# commander, malware triage, and WebShell triage roles available immediately.
+roles_dir: roles

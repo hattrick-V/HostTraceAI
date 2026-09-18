@@ -1,0 +1,69 @@
+# HostTraceAI
+
+HostTraceAI is an AI-assisted host provenance and incident-response workspace. It is built on a mature conversational agent, MCP, Skills, RBAC, audit, and SQLite foundation, while keeping host investigation as its only product domain.
+
+The platform helps authorized responders investigate Linux and Windows hosts over SSH/MCP, preserve evidence, reason over findings, and produce an auditable timeline and report.
+
+It is not a vulnerability scanner, penetration-testing console, asset-discovery platform, alert center, or C2 framework.
+
+## Quick start
+
+Requires Go 1.25 or newer (see the `go` directive in `go.mod`).
+
+```bash
+git clone https://github.com/hattrick-V/HostTraceAI.git
+cd HostTraceAI
+cp config.example.yaml config.yaml
+go run ./cmd/server --config config.yaml --http --port 19088
+```
+
+Then open `http://127.0.0.1:19088/`. The first start creates the `admin`
+account with a one-time random strong password, printed to the log — save it
+immediately, it is shown only once.
+
+The Web/API port can be supplied with `--port`, the `HOSTTRACE_PORT`
+environment variable, or `config.yaml` (in that order).
+
+### Configure an AI model (required)
+
+The AI channel in `config.example.yaml` ships as a **placeholder**
+(`base_url: https://api.example.com/v1`, empty `api_key` and `model`). The
+service starts, but conversations will not work until you fill these in.
+
+After signing in:
+
+1. Go to **Settings → Basic Settings → AI Channel**;
+2. Fill in **Base URL**, **API Key**, and **Model**;
+   - Any OpenAI-compatible endpoint works (OpenAI, DeepSeek, Qwen, Zhipu,
+     a local vLLM or Ollama server, and so on);
+   - Use "Fetch models" to pick from a list where supported; Claude requires
+     the model name to be typed manually;
+3. Click **Test connection**, then save.
+
+You can also edit the `ai.channels.default` section of `config.yaml` directly
+and restart the service.
+
+> Optional: knowledge-base retrieval and vision analysis need separate
+> embedding / rerank channels, configured in the same settings page. Leaving
+> them unset does not affect basic chat or host investigation.
+
+### Python and MCP are optional
+
+**Python is not required.** The platform itself — Go server, web console, and
+the built-in forensics tools — runs fully without it. The Python packages in
+`requirements.txt` only serve the optional helper scripts under `mcp-servers/`;
+`run.sh` skips them automatically when python3 is absent.
+
+`mcp.enabled: false` in the example config is deliberate: **built-in tools do
+not depend on HTTP MCP services**, so a fresh deployment has full capability
+out of the box. Enable it only when you want to reach remote hosts over SSH or
+attach external MCP servers.
+
+Built-in forensics tools live in `tools/` (binwalk, exiftool, foremost,
+strings, exec) and expect the corresponding CLI programs to be installed on
+the target host.
+
+See `README_CN.md` for the product model and the local deployment guide.
+
+An optional Chromium DevTools extension (capture browser Network traffic into an investigation) lives in `plugins/browser-extension/`; see `plugins/README.md`.
+

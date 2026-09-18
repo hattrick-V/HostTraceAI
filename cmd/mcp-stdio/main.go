@@ -1,0 +1,59 @@
+package main
+
+import (
+	"flag"
+	"fmt"
+	"hosttrace-ai/internal/config"
+	"hosttrace-ai/internal/logger"
+	"hosttrace-ai/internal/mcp"
+	"hosttrace-ai/internal/security"
+	"hosttrace-ai/internal/toolguard"
+	"os"
+
+	"go.uber.org/zap"
+)
+
+func main() {
+	var configPath = flag.String("config", "config.yaml", "配置文件路径")
+	flag.Parse()
+
+	// 加载配置
+	cfg, err := config.Load(*configPath)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "加载配置失败: %v\n", err)
+		os.Exit(1)
+	}
+
+	// 初始化日志（stdio 模式下使用 stderr 输出日志，避免干扰 JSON-RPC 通信）
+	log := logger.New(cfg.Log.Level, "stderr", logger.DiagnosticOptions{
+		Dir:           cfg.Log.DiagnosticDir,
+		Disabled:      cfg.Log.DiagnosticDisabled,
+		RetentionDays: cfg.Log.DiagnosticRetentionDays,
+	})
+	defer log.Sync()
+	defer log.Close()
+
+	// 创建MCP服务器
+	mcpServer := mcp.NewServer(log.Logger)
+	guard, err := toolguard.NewManager(cfg.EffectiveToolGuard())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "初始化调用拦截失败: %v\n", err)
+		os.Exit(1)
+	}
+	mcpServer.SetToolGuard(guard)
+
+	// 创建安全工具执行器
+	executor := security.NewExecutor(&cfg.Security, mcpServer, log.Logger)
+
+	// 注册工具
+	executor.RegisterTools(mcpServer)
+	mcp.RegisterExecutionControlTools(mcpServer, nil)
+
+	log.Logger.Info("MCP服务器（stdio模式）已启动，等待消息...")
+
+	// 运行 stdio 循环
+	if err := mcpServer.HandleStdio(); err != nil {
+		log.Logger.Error("MCP服务器运行失败", zap.Error(err))
+		os.Exit(1)
+	}
+}

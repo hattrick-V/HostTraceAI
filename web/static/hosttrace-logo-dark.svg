@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="HostTraceAI">
+  <defs>
+    <mask id="ht-cutout-dark" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+      <rect width="64" height="64" fill="#fff"/>
+      <path d="M19 18v28M43 18v28M19 32h24" fill="none" stroke="#000" stroke-width="7" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <path d="M20 4h24q4 0 6.2 3.8l11 19q2.2 4.2 0 8.4l-11 21Q48 60 44 60H20q-4 0-6.2-3.8l-11-21q-2.2-4.2 0-8.4l11-19Q16 4 20 4Z" fill="#F8FAFC" mask="url(#ht-cutout-dark)"/>
+  <path d="m14 43 10-9 9 4 11-10 7 3" fill="none" stroke="#4DA3FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="14" cy="43" r="2.2" fill="#4DA3FF"/>
+  <circle cx="33" cy="38" r="2.2" fill="#4DA3FF"/>
+  <circle cx="51" cy="31" r="2.2" fill="#4DA3FF"/>
+  <path d="m50 9 1.7 4.3L56 15l-4.3 1.7L50 21l-1.7-4.3L44 15l4.3-1.7Z" fill="#22D3EE"/>
+</svg>

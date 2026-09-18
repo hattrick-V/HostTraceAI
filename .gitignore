@@ -1,0 +1,90 @@
+# Runtime data
+data/
+chat_uploads/
+knowledge_base/
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite
+*.sqlite3
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+
+# Local configuration and secrets
+config.yaml
+config.local.yaml
+config.yaml.backup
+*.backup
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+
+# Upgrade / settings backups
+.upgrade-backup/
+
+# Eino runtime task board (under skills_dir)
+skills/.eino/
+
+# Build outputs
+# NOTE: keep these anchored to the repository root ("/"). An unanchored
+# "server" or "server.exe" pattern would also match cmd/server/, which would
+# exclude the main service entrypoint from the repository entirely.
+/hosttrace-ai
+/hosttrace-ai.exe
+/hosttrace-ai*
+/server
+/server.exe
+*.test
+/bin/
+/dist/
+/build/
+/.build/
+/target/
+/.gradle/
+coverage.out
+coverage.html
+
+# Logs and temporary files
+# The diagnostic writer defaults to a relative "log" directory, so it can
+# appear next to whichever package was exercised (e.g. cmd/server/log/).
+/log/
+**/log/
+*.log
+*.bak
+*.bak-*
+*.old
+*.orig
+*.save
+*~
+tmp/
+temp/
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Go
+vendor/
+!web/static/vendor/
+!web/static/vendor/**
+
+# Node / browser extension
+node_modules/
+
+# macOS / Windows / editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
