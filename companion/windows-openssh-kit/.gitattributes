@@ -1,0 +1,13 @@
+# These batch scripts and notes are GBK-encoded for Chinese Windows consoles
+# (the scripts run `chcp 936`), and use CRLF line endings.
+#
+# They MUST stay byte-exact. Normalising the encoding would garble the Chinese
+# output, and rewriting line endings risks breaking the batch parser.
+# `-text` tells git to treat them as binary and apply no conversion at all.
+
+*.bat -text
+*.txt -text
+
+# build-kit.ps1 is intentionally ASCII-only, so it is safe to normalise.
+# Checking it out with CRLF keeps it consistent with the rest of the kit.
+*.ps1 text eol=crlf
